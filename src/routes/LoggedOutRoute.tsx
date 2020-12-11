@@ -12,34 +12,37 @@ interface IProps {
   component: React.ComponentType<any>;
 }
 
-const LoggedOutRoute = ({
-  component: Component,
-  isAuthenticated,
-  ...otherProps
-}: IProps) => {
-  if (isAuthenticated === true) {
-    history.push("/home");
-    alert("this is a logged out route, you are logged in, redirected to home page");
-  }
+class LoggedOutRoute extends React.Component<IProps> {
+    render() {
+        let {
+            component: Component,
+            isAuthenticated,
+            ...otherProps
+        } = this.props;
+        if (isAuthenticated === true) {
+            history.push("/home");
+            alert("this is a logged out route, you are logged in, redirected to home page");
+        }
 
-  return (
-    <>
-      <header>
-        Logged Out Header
-      </header>
-      <Route
-        render={otherProps => (
-          <>
-            <Component {...otherProps} />
-          </>
-        )}
-      />
-      <footer>
-        Logged Out Footer
-      </footer>
-    </>
-  );
-};
+        return (
+            <>
+                <header>
+                    Logged Out Header
+                </header>
+                <Route
+                    render={otherProps => (
+                        <>
+                            <Component {...otherProps} />
+                        </>
+                    )}
+                />
+                <footer>
+                    Logged Out Footer
+                </footer>
+            </>
+        );
+    }
+}
 
 const mapStateToProps = (state: ICurrent) => ({
   isAuthenticated: state.isAuthenticated

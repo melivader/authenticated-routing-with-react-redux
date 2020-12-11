@@ -1,7 +1,11 @@
 import * as React from "react";
 
-const Home = () => (
-  <p>Logged in home page</p>
-);
+class Home extends React.Component {
+    render() {
+        return (
+            <p>Logged in home page</p>
+        );
+    }
+}
 
 export default Home;

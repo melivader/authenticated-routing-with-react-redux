@@ -7,12 +7,17 @@ interface IProps {
   logInConnect: () => void;
 }
 
-const LogIn = ({ logInConnect }: IProps) => (
-  <>
-    <p>Login page</p>
-    <button onClick={logInConnect}>log me in</button>
-  </>
-);
+class LogIn extends React.Component<IProps> {
+    render() {
+        let {logInConnect} = this.props;
+        return (
+            <>
+                <p>Login page</p>
+                <button onClick={logInConnect}>log me in</button>
+            </>
+        );
+    }
+}
 
 const mapDispatchToProps = {
   logInConnect: logIn

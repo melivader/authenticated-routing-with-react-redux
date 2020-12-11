@@ -13,18 +13,20 @@ import Terms from "../components/pages/Terms";
 import LoggedInRoute from "../routes/LoggedInRoute";
 import LoggedOutRoute from "../routes/LoggedOutRoute";
 
-const Pages = () => {
-  return (
-    <Switch>
-      <LoggedOutRoute path="/" exact={true} component={Landing} />
-      <LoggedOutRoute path="/about" exact={true} component={About} />
-      <LoggedOutRoute path="/log-in" exact={true} component={LogIn} />
-      <LoggedInRoute path="/log-out" exact={true} component={LogOut} />
-      <LoggedInRoute path="/home" exact={true} component={Home} />
-      <Route path="/terms" exact={true} component={Terms} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-};
+class Pages extends React.Component {
+    render() {
+        return (
+            <Switch>
+                <LoggedOutRoute path="/" exact={true} component={Landing}/>
+                <LoggedOutRoute path="/about" exact={true} component={About}/>
+                <LoggedOutRoute path="/log-in" exact={true} component={LogIn}/>
+                <LoggedInRoute path="/log-out" exact={true} component={LogOut}/>
+                <LoggedInRoute path="/home" exact={true} component={Home}/>
+                <Route path="/terms" exact={true} component={Terms}/>
+                <Route component={NotFound}/>
+            </Switch>
+        );
+    }
+}
 
 export default Pages;

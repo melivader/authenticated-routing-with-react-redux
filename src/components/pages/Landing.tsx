@@ -1,7 +1,11 @@
 import * as React from "react";
 
-const Landing = () => (
-  <p>Landing page</p>
-);
+class Landing extends React.Component {
+    render() {
+        return (
+            <p>Landing page</p>
+        );
+    }
+}
 
 export default Landing;

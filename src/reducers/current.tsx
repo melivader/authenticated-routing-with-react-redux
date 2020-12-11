@@ -1,5 +1,5 @@
-import { IAuthenticate, IUnauthenticate } from "../actions/current";
-import { AUTHENTICATE, UNAUTHENTICATE } from "../constants";
+import { IAuthenticate, IUnauthenticated } from "../actions/current";
+import { AUTHENTICATE, UNAUTHENTICATED } from "../constants";
 import { ICurrent } from "../types";
 
 export default function currentReducer(
@@ -7,12 +7,12 @@ export default function currentReducer(
     uuid: null,
     isAuthenticated: null,
   },
-  action: IAuthenticate | IUnauthenticate,
+  action: IAuthenticate | IUnauthenticated,
 ): ICurrent {
   switch (action.type) {
     case AUTHENTICATE:
       return { ...state, uuid: "placeholder-uuid", isAuthenticated: true };
-    case UNAUTHENTICATE:
+    case UNAUTHENTICATED:
       return { uuid: null, isAuthenticated: false }
   }
   return state;

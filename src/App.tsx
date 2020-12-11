@@ -13,26 +13,29 @@ interface IProps {
   isAuthenticated: boolean | null;
 }
 
-const App = ({
-  checkAuthenticationConnect,
-  isAuthenticated
-}: IProps) => {
-  React.useEffect(() => {
-    checkAuthenticationConnect();
-  }, []);
+class App extends React.Component<IProps> {
+  constructor(prop:any) {
+    super(prop);
+    this.props.checkAuthenticationConnect()
+  }
+  render() {
+    let {
+      isAuthenticated
+    } = this.props;
 
-  const app = isAuthenticated !== null ? (
-    <Router history={history}>
-      <Nav />
-      <Route component={Pages} />
-    </Router>
-  ) : null;
+    const app = isAuthenticated !== null ? (
+        <Router history={history}>
+          <Nav/>
+          <Route component={Pages}/>
+        </Router>
+    ) : null;
 
-  return (
-    <div className="App">
-      {app}
-    </div>
-  );
+    return (
+        <div className="App">
+          {app}
+        </div>
+    );
+  }
 }
 
 const mapStateToProps = (state: ICurrent) => ({

@@ -7,12 +7,17 @@ interface IProps {
   logOutConnect: () => void;
 }
 
-const LogOut = ({ logOutConnect }: IProps) => (
-  <>
-    <p>Logout page</p>
-    <button onClick={logOutConnect}>log me out</button>
-  </>
-);
+class LogOut extends React.Component<IProps> {
+    render() {
+        let {logOutConnect} = this.props;
+        return (
+            <>
+                <p>Logout page</p>
+                <button onClick={logOutConnect}>log me out</button>
+            </>
+        );
+    }
+}
 
 const mapDispatchToProps = {
   logOutConnect: logOut

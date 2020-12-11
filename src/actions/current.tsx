@@ -1,7 +1,6 @@
 import { ThunkDispatch as Dispatch } from "redux-thunk";
 
 import * as constants from "../constants";
-import { ICurrent } from "../types";
 
 export interface IAuthenticate {
   type: constants.AUTHENTICATE;
@@ -13,17 +12,17 @@ function authenticate(): IAuthenticate {
   };
 }
 
-export interface IUnauthenticate {
-  type: constants.UNAUTHENTICATE;
+export interface IUnauthenticated {
+  type: constants.UNAUTHENTICATED;
 }
 
-function unauthenticate(): IUnauthenticate {
+function unauthenticated(): IUnauthenticated {
   return {
-    type: constants.UNAUTHENTICATE,
+    type: constants.UNAUTHENTICATED,
   };
 }
 
-export type AuthenticationAction = IAuthenticate | IUnauthenticate;
+export type AuthenticationAction = IAuthenticate | IUnauthenticated;
 
 export function logIn() {
   return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
@@ -35,7 +34,7 @@ export function logIn() {
 export function logOut() {
   return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
     await window.localStorage.setItem("authenticated", "false");
-    dispatch(unauthenticate());
+    dispatch(unauthenticated());
   };
 }
 
@@ -46,6 +45,6 @@ export function checkAuthentication() {
       JSON.parse(auth) :
       null;
 
-    formattedAuth ? dispatch(authenticate()) : dispatch(unauthenticate());
+    formattedAuth ? dispatch(authenticate()) : dispatch(unauthenticated());
   };
 }
